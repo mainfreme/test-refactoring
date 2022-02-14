@@ -4,12 +4,13 @@ namespace App;
 
 final class GildedRose
 {
+
     public function updateQuality(Item $item): void
     {
-        if ($item->name != 'Aged Brie' and $item->name != 'Backstage passes to a TAFKAL80ETC concert') {
+        if ($item->name != ItemConst::ARED_BRIE and $item->name != ItemConst::BACKSTAGE_PRESS_TAFKAL80ETC) {
             if ($item->quality > 0) {
                 $item->quality--;
-                if ($item->name == 'Sulfuras, Hand of Ragnaros') {
+                if ($item->name == ItemConst::SULFURAS) {
                     $item->quality = 80;
                 }
             }
@@ -20,7 +21,7 @@ final class GildedRose
             }
         }
 
-        if ($item->name != 'Sulfuras, Hand of Ragnaros') {
+        if ($item->name != ItemConst::SULFURAS) {
             $item->sell_in--;
         }
 
@@ -29,7 +30,7 @@ final class GildedRose
 
     public function checkIsPress(Item $item): Item
     {
-        if ($item->name == 'Backstage passes to a TAFKAL80ETC concert') {
+        if ($item->name == ItemConst::BACKSTAGE_PRESS_TAFKAL80ETC) {
 
             if ($item->sell_in < 11) {
                 $this->checkQuality($item);
@@ -55,16 +56,16 @@ final class GildedRose
     public function checkIsNotSell(Item $item): Item
     {
         if ($item->sell_in < 0) {
-            if ($item->name == 'Aged Brie') {
+            if ($item->name == ItemConst::ARED_BRIE) {
 
                 return $this->checkQuality($item);
             }
 
-            if ($item->name == 'Backstage passes to a TAFKAL80ETC concert') {
+            if ($item->name == ItemConst::BACKSTAGE_PRESS_TAFKAL80ETC) {
                 $item->quality = 0;
             }
 
-            if ($item->quality > 0 and $item->name != 'Sulfuras, Hand of Ragnaros') {
+            if ($item->quality > 0 and $item->name != ItemConst::SULFURAS) {
                 $item->quality--;
             }
         }
