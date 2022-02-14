@@ -15,13 +15,6 @@ final class Item
         $this->quality = $quality;
     }
 
-    public function setQuality(int $quality): self
-    {
-        $this->quality = $quality;
-
-        return $this;
-    }
-
     public function __toString()
     {
         return "{$this->name}, {$this->sell_in}, {$this->quality}";
